@@ -10,7 +10,7 @@ echo "Targeting " $STORAGE
 PARTNO=2
 PARTITION="$STORAGE$PARTNO"
 # echo $PARTITION
-mkfs.ext4 $PARTITION
+mkfs.ext4 $PARTITION -F
 mount $PARTITION /mnt
 # Now we're doing the interesting stuff, we're going to pacstrap the installation.
 # Packages at present - base linux linux-firmware base-devel git vim NetworkManager openssh grub
