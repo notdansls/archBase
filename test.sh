@@ -7,3 +7,6 @@ echo "Warning, this process will wipe the disk! HAHA"
 echo "Grabbing the HDD device..."
 echo "Targeting " $STORAGE
 (&>/dev/null . ~/archBase/diskLayout.sh &)
+PARTNO=2
+PARTITION="$STORAGE$PARTNO"
+echo $PARTITION
