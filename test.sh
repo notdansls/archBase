@@ -14,4 +14,11 @@ mkfs.ext4 $PARTITION -F
 mount $PARTITION /mnt
 # Now we're doing the interesting stuff, we're going to pacstrap the installation.
 # Packages at present - base linux linux-firmware base-devel git vim NetworkManager openssh grub
-pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub
+#pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub
+# short version just to get up and running quickly...
+pacstrap /mnt base linux linux-firmware
+# Next we'll generate the fstab file
+genfstab -U /mnt >> /mnt/etc/fstab
+# Now we want to change root into the new environment
+arch-chroot /mnt
+# From where, I don't quite now how we'll automate it, but I'll work it out. come back for more soon...
