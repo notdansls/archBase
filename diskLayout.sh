@@ -6,7 +6,7 @@
 # document what we're doing in-line with the actual commands
 # Note that a blank line (commented as "defualt" will send a empty
 # line terminated with a newline to take the fdisk default.
-echo "We're in diskLayout.sh and targeting" $STORAGE
+echo "We're in diskLayout.sh and targeting" $STORAGE >> /root/result.log
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk $STORAGE
   g # Create a new empty GPT partition table
   n # new partition
