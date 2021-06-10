@@ -9,14 +9,14 @@
 sed -e 's/\s*\([\+0-9a-zA-Z]*\).*/\1/' << EOF | fdisk /dev/$HDD
   g # Create a new empty GPT partition table
   n # new partition
-    # default - partition 1
+  1 # default - partition 1
     # default - start at beginning of disk 
-  1M # 1M boot partition
+  +1M # 1M boot partition
   t # Change the partition type
   4 # Change the type to BIOS Boot
   n # new partition
   p # primary partition
-    # default - partition 2
+  2 # default - partition 2
     # default - first free sector
     # default - extend partition to end of disk
   w # write the partition table
