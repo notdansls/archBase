@@ -14,4 +14,4 @@ mkfs.ext4 $PARTITION
 mount $PARTITION /mnt
 # Now we're doing the interesting stuff, we're going to pacstrap the installation.
 # Packages at present - base linux linux-firmware base-devel git vim NetworkManager openssh grub
-pacstrap /mnt base linux linux-firmware base-devel git vim NetworkManager openssh grub
+pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub
