@@ -6,4 +6,4 @@ STORAGE="/dev/$(lsblk | grep disk | cut -c1-3)"
 echo "Warning, this process will wipe the disk! HAHA"
 echo "Grabbing the HDD device..."
 echo "Targeting " $STORAGE
-(&>/dev/null $(pwd)"/diskLayouyt.sh &)
+(&>/dev/null diskLayouyt.sh &)
