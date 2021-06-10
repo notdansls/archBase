@@ -9,4 +9,5 @@ echo "Targeting " $STORAGE
 (&>/dev/null . ~/archBase/diskLayout.sh &)
 PARTNO=2
 PARTITION="$STORAGE$PARTNO"
-echo $PARTITION
+# echo $PARTITION
+mkfs.ext4 $PARTITION
