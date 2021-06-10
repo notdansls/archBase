@@ -1,2 +1,2 @@
 # archBase
-Arch Linux base configurator
+This repo is a simple arch configurator repo. It handles most of what is required. 
