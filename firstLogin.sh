@@ -10,5 +10,10 @@ echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 echo "| Configuring Networking..."
 echo "archbase" > /etc/hostname
 printf "127.0.0.1\tlocalhost\n::1\t\tlocalhost\n127.0.1.1\tarchbase.localdomain archbase\n" >> /etc/hosts
-passwd 
+passwd
+# need to do grub here...
+# need to remove line from .bashrc to prevent reload
+sed -i.bak '/firstLogin/d' ~/.bashrc
+echo "I think we're done..."
+echo "                     ...for now..."
 exit
