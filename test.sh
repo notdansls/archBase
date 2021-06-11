@@ -16,7 +16,7 @@ mount $PARTITION /mnt
 # Packages at present - base linux linux-firmware base-devel git vim NetworkManager openssh grub
 #pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub
 # short version just to get up and running quickly...
-pacstrap /mnt base linux linux-firmware
+pacstrap /mnt base linux linux-firmware grub
 # Next we'll generate the fstab file
 genfstab -U /mnt >> /mnt/etc/fstab
 # Copy archBase to /mnt/root/...
@@ -25,3 +25,6 @@ cp -r /root/archBase /mnt/root/
 echo ". ~/archBase/firstLogin.sh" >> /mnt/root/.bashrc
 arch-chroot /mnt
 # From where, I don't quite now how we'll automate it, but I'll work it out. come back for more soon...
+echo "| At this point we're done. We're going to unmount everything and go for a reboot..."
+umount -R /mnt
+reboot
