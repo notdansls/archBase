@@ -10,8 +10,14 @@ echo "LANG=en_GB.UTF-8" > /etc/locale.conf
 echo "| Configuring Networking..."
 echo "archbase" > /etc/hostname
 printf "127.0.0.1\tlocalhost\n::1\t\tlocalhost\n127.0.1.1\tarchbase.localdomain archbase\n" >> /etc/hosts
+echo "| You'll need to set a root password here."
+echo "| you will need the password once we have restarted."
 passwd
 # need to do grub here...
+echo "| Configuring GRUB Bootloader..."
+DISK="/dev/$(lsblk | grep disk | grep G | cut -c1-3)"
+grub-install --target=i386-pc $DISK
+grub-mkconfig -o /boot/grub/grub.cfg
 # need to remove line from .bashrc to prevent reload
 sed -i.bak '/firstLogin/d' ~/.bashrc
 echo "I think we're done..."
