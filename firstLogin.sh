@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 function configureTimeZone {
 	ln -sf /user/share/zoneinfo/Europe/London /etc/localtime
 	hwclock --systohc
