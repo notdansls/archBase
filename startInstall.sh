@@ -40,7 +40,7 @@ function writeOutputs {
 function prepareEnvironment {
 	timedatectl set-ntp true
 	storage="/dev/$(lsblk | grep disk | heand -n 1 | cut -c1-3)"
-	(&/dev/null . ~/archBase/diskLayout.sh &)
+	(&>/dev/null . ~/archBase/diskLayout.sh &)
 	partition=$storage"2"
 	mkfs.ext4 $partition -F
 	mount $partition /mnt
