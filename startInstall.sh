@@ -10,7 +10,6 @@ function confirmProcedure {
 	read -p '| To proceed, please type proceed: ' procedureConfirmed
 	if [ $procedureConfirmed != "proceed" ]
 	then
-		read -n1 -r -p "> Function confirmProcedure =Complete" key
 		exit 22
 		
 	fi
@@ -29,7 +28,6 @@ function getInputs {
 	read -sp '| Password:  ' userPW
 	echo "|"
 	read -p	 '| hostname:  ' hostName
-	read -n1 -r -p "> Function getInputs =Complete" key
 }
 
 function writeOutputs {
@@ -40,7 +38,6 @@ function writeOutputs {
 	unset userID
 	unset userPW
 	unset hostName
-	read -n1 -r -p "> Function writeOutputs =Complete" key
 }
 
 function prepareEnvironment {
@@ -57,7 +54,6 @@ function prepareEnvironment {
 	cp ~/archBase.conf /mnt/root/
 	cp -r /root/archBase /mnt/root/
 	echo ". ~/archBase/firstLogin.sh" >> /mnt/root/.bashrc
-	read -n1 -r -p "> Function prepareEnvironment =Complete (About to chroot)" key
 	arch-chroot /mnt
 }
 
@@ -67,6 +63,7 @@ function cleanup {
 	echo "|"
 	echo "| The configuration is now complete, rebooting now..."
 	echo "|"
+	sleep 5s
 	reboot
 }
 
@@ -77,4 +74,4 @@ confirmProcedure	# Confirm procedure will run to ensure the user wants to
 getInputs		# Get the inputs from the user
 writeOutputs		# write the inputs gathered to the archBase.conf file
 prepareEnvironment	# Get the environemnt ready for first boot
-#cleanup			# Unmount everything and reboot everything
+cleanup			# Unmount everything and reboot everything
