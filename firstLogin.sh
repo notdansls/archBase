@@ -30,6 +30,23 @@ function createStdUser {
 	sed -i.bak '/%wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 }
 
+function checkForPublicKey {
+	publicKey=/root/base
+	if test -f "$publicKey"; then
+		mkdir /home/$arbid/.ssh
+		cp /root/base /home/$arbid/.ssh/base.pub
+		chown -R $arbid:$arbid /home/$arbid/.ssh
+		chmod -R 700 /home/$arbid/.ssh
+		lockdownSSH
+	fi
+}
+
+function lockdownSSH {
+	sed -i.bak 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config
+	systemctl enable sshd
+}
+
+
 function resetRoot {
 	rootPW=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 64 | head -n 1)
 	echo root:$rootPW | chpasswd
@@ -44,7 +61,6 @@ function installBootloader {
 
 function enableServices {
 	systemctl enable NetworkManager
-	systemctl enable sshd
 }
 
 function cleanupChroot {
