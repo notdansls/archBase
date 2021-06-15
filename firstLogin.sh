@@ -40,8 +40,13 @@ function installBootloader {
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
 
+function enableServices {
+	systemctl enable NetworkManager
+}
+
 function cleanupChroot {
 	sed -i.bak '/firstLogin/d' ~/.bashrc
+	exit
 }
 
 readConfig		# Read the inputs from the previous scripts
@@ -50,4 +55,5 @@ configureNetworking	# Function does exactly as it sounds
 createStdUser		# Creates new user within the new environment, give it sudo prives.
 resetRoot		# Resets root password to a random unknown string. Root will not be used again.
 installBootloader	# install the bootloader of choice
+enableServices		# enable any services that are required
 cleanupChroot
