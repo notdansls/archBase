@@ -10,8 +10,9 @@ function confirmProcedure {
 	read -p '| To proceed, please type proceed: ' procedureConfirmed
 	if [ $procedureConfirmed != "proceed" ]
 	then
-		exit 22 
-	fi	
+		exit 22
+		read -n1 -r -p "> Function confirmProcedure =Complete" key
+	fi
 }
 
 function getInputs {
@@ -27,6 +28,7 @@ function getInputs {
 	read -sp '| Password:  ' userPW
 	echo "|"
 	read -p	 '| hostname:  ' hostName
+	read -n1 -r -p "> Function getInputs =Complete" key
 }
 
 function writeOutputs {
@@ -37,6 +39,7 @@ function writeOutputs {
 	unset userID
 	unset userPW
 	unset hostName
+	read -n1 -r -p "> Function writeOutputs =Complete" key
 }
 
 function prepareEnvironment {
@@ -52,13 +55,8 @@ function prepareEnvironment {
 	cp ~/archBase.conf /mnt/root/
 	cp -r /root/archBase /mnt/root/
 	echo ". ~/archBase/firstLogin.sh" >> /mnt/root/.bashrc
+	read -n1 -r -p "> Function prepareEnvironment =Complete (About to chroot)" key
 	arch-chroot /mnt
-}
-
-function readConfig {
-	arbid=$(cat ~/archBase.conf | grep stdUserID | cut -c 11-32)
-	arbpw=$(cat ~/archBase.conf | grep stdUserPW | cut -c 11-32)
-	echo "We have read the user '$arbid' from the config file."
 }
 
 function cleanup {
