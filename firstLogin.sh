@@ -9,6 +9,7 @@ function configureRegion {
 	sed -i.bak '/en_GB/s/^#//g' /etc/locale.gen
 	locale-gen
 	echo "LANG=en_GB.UTF-8" > /etc/locale.conf
+	echo "KEYMAP=uk" >> /etc/vconsole.conf
 }
 
 function configureNetworking {
