@@ -25,6 +25,7 @@ function getInputs {
 	echo "|"
 	read -p  '| User Name: ' userID
 	read -sp '| Password:  ' userPW
+	echo "|"
 	read -p	 '| hostname:  ' hostName
 }
 
@@ -48,6 +49,7 @@ function prepareEnvironment {
 #	pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub sudo
 	pacstrap /mnt base linux linux-firmware vim networkmanager grub sudo
 	genfstap -U /mnt >> /mnt/etc/fstab
+	cp ~/archBase.conf /mnt/root/
 	cp -r /root/archBase /mnt/root/
 	echo ". ~/archBase/firstLogin.sh" >> /mnt/root/.bashrc
 	arch-chroot /mnt
@@ -60,7 +62,7 @@ function readConfig {
 }
 
 function cleanup {
-	clean
+	clear
 	umount -R /mnt
 	echo "|"
 	echo "| The configuration is now complete, rebooting now..."
