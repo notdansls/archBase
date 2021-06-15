@@ -77,4 +77,4 @@ confirmProcedure	# Confirm procedure will run to ensure the user wants to
 getInputs		# Get the inputs from the user
 writeOutputs		# write the inputs gathered to the archBase.conf file
 prepareEnvironment	# Get the environemnt ready for first boot
-cleanup			# Unmount everything and reboot everything
+#cleanup			# Unmount everything and reboot everything
