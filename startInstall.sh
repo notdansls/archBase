@@ -52,7 +52,7 @@ function prepareEnvironment {
 	mount $partition /mnt
 #	pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub sudo
 	pacstrap /mnt base linux linux-firmware vim networkmanager grub sudo
-	genfstap -U /mnt >> /mnt/etc/fstab
+	genfstab -U /mnt >> /mnt/etc/fstab
 	cp ~/archBase.conf /mnt/root/
 	cp -r /root/archBase /mnt/root/
 	echo ". ~/archBase/firstLogin.sh" >> /mnt/root/.bashrc
