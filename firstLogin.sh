@@ -38,6 +38,7 @@ function resetRoot {
 function installBootloader {
 	disk="/dev/$(lsblk | grep disk | grep G | head -n 1 | cut -c1-3)"
 	grub-install --target=i386-pc $disk
+	sed -i.bak 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/g' /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
 }
 
