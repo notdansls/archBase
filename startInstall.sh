@@ -10,8 +10,9 @@ function confirmProcedure {
 	read -p '| To proceed, please type proceed: ' procedureConfirmed
 	if [ $procedureConfirmed != "proceed" ]
 	then
-		exit 22
 		read -n1 -r -p "> Function confirmProcedure =Complete" key
+		exit 22
+		
 	fi
 }
 
