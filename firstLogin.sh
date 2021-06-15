@@ -24,7 +24,7 @@ function readConfig {
 }
 
 function createStdUser {
-	useradd -G wheel $arbid
+	useradd -G wheel -m $arbid
 	echo -e "$arbpw\n$arbpw" | sudo passwd $arbid
 	sed -i.bak '/%wheel ALL=(ALL) ALL/s/^#//g' /etc/sudoers
 }
