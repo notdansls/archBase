@@ -51,10 +51,25 @@ function prepareEnvironment {
 	pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub sudo wget
 #	pacstrap /mnt base linux linux-firmware vim networkmanager grub sudo
 	genfstab -U /mnt >> /mnt/etc/fstab
+	checkPublicKey
 	cp ~/archBase.conf /mnt/root/
 	cp -r /root/archBase /mnt/root/
 	echo ". ~/archBase/firstLogin.sh" >> /mnt/root/.bashrc
 	arch-chroot /mnt
+}
+
+function checkPublicKey {
+	publicKey=~/base
+	if test -f "$publicKey"; then
+		cp publicKey /mnt/root/base
+		publicKeyDone=/mnt/root/base
+		if test -f "$publicKeyDone"; then
+			echo "|-> Public key copied"
+		else
+			echo "|-X Public key was NOT copied!"
+			sleep 5
+		fi
+	fi
 }
 
 function cleanup {
