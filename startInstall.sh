@@ -46,6 +46,7 @@ function writeOutputs {
 function prepareEnvironment {
 	timedatectl set-ntp true
 	storage="/dev/$(lsblk | grep disk | head -n 1 | cut -c1-3)"
+	sleep 1		#	Sleep the script for a second, fdisk keeps failing if executed quickly
 	(&>/dev/null . ~/archBase/diskLayout.sh &)
 	partition=$storage"2"
 	mkfs.ext4 $partition -F
