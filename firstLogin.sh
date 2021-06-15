@@ -44,6 +44,7 @@ function installBootloader {
 
 function enableServices {
 	systemctl enable NetworkManager
+	systemctl enable sshd
 }
 
 function cleanupChroot {
