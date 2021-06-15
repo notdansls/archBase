@@ -48,7 +48,7 @@ function prepareEnvironment {
 	partition=$storage"2"
 	mkfs.ext4 $partition -F
 	mount $partition /mnt
-	pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub sudo
+	pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub sudo wget
 #	pacstrap /mnt base linux linux-firmware vim networkmanager grub sudo
 	genfstab -U /mnt >> /mnt/etc/fstab
 	cp ~/archBase.conf /mnt/root/
