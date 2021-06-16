@@ -31,7 +31,7 @@ function getInputs {
 }
 
 function writeOutputs {
-	echo "stdUserID=$userID" >> ~/archBase.conf
+	echo "stdUserID=$userID" > ~/archBase.conf
 	echo "stdUserPW=$userPW" >> ~/archBase.conf
 	echo "aHostname=$hostName" >> ~/archBase.conf
 	echo "Username, Password, and hostname  written to file..."
