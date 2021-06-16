@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+set -e
 function confirmProcedure {
 	clear
 	echo
