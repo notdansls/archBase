@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 set -e
+set -u
 function confirmProcedure {
 	clear
 	echo
@@ -41,14 +42,18 @@ function writeOutputs {
 	unset hostName
 }
 
-function prepareEnvironment {
-	timedatectl set-ntp true
+function prepareDisk {
 	storage="/dev/$(lsblk | grep disk | head -n 1 | cut -c1-3)"
 	sleep 1		#	Sleep the script for a second, fdisk keeps failing if executed quickly
 	(&>/dev/null . ~/archBase/diskLayout.sh &)
 	partition=$storage"2"
 	mkfs.ext4 $partition -F
 	mount $partition /mnt
+	read -p "Waiting here to allow review of possible errors..."
+}
+
+function prepareEnvironment {
+	timedatectl set-ntp true
 	pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub sudo wget
 #	pacstrap /mnt base linux linux-firmware vim networkmanager grub sudo
 	genfstab -U /mnt >> /mnt/etc/fstab
@@ -89,5 +94,6 @@ confirmProcedure	# Confirm procedure will run to ensure the user wants to
 			# nothing else will run.
 getInputs		# Get the inputs from the user
 writeOutputs		# write the inputs gathered to the archBase.conf file
+prepareDisk		# prepare the disk for pacstrap
 prepareEnvironment	# Get the environemnt ready for first boot
 cleanup			# Unmount everything and reboot everything
