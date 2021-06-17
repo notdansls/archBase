@@ -1,6 +1,7 @@
 #! /usr/bin/bash
 set -e
 set -u
+set -x
 function confirmProcedure {
 	clear
 	echo
