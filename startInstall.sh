@@ -1,7 +1,10 @@
-#! /usr/bin/bash
-set -e
-set -u
+#!/bin/bash
+
+exec 5> >(logger -t $0)
+BASH_XTRACEFD="5"
+PS4='$LINENO: '
 set -x
+
 function confirmProcedure {
 	clear
 	echo
