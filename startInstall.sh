@@ -47,7 +47,10 @@ function writeOutputs {
 }
 
 function prepareDisk {
-	storage="/dev/$(lsblk | grep disk | head -n 1 | cut -c1-3)"
+	# Commenting out, does not take into consideration alternative storage devices such as nvme0n1...
+ 	# storage="/dev/$(lsblk | grep disk | head -n 1 | cut -c1-3)"
+  	#
+   	storage="/dev/$(lsblk | | grep disk | head -n 1 | cut -d ' ' -f 1)"
 	sleep 1		#	Sleep the script for a second, fdisk keeps failing if executed quickly
 	(&>/dev/null . ~/archBase/diskLayout.sh &)
 	partition=$storage"2"
