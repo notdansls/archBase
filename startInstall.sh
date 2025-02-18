@@ -61,8 +61,10 @@ function prepareDisk {
 
 function prepareEnvironment {
 	timedatectl set-ntp true
-	pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub sudo wget
-#	pacstrap /mnt base linux linux-firmware vim networkmanager grub sudo
+	# Commenting out, need to include wi to allow wireless connection once rebooted after installation
+ 	#pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub sudo wget
+  	#pacstrap /mnt base linux linux-firmware vim networkmanager grub sudo
+   	pacstrap /mnt base linux linux-firmware base-devel git vim networkmanager openssh grub sudo wget wi
 	genfstab -U /mnt >> /mnt/etc/fstab
 	checkPublicKey
 	cp ~/archBase.conf /mnt/root/
